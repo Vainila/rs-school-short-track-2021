@@ -21,8 +21,55 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+function minesweeper(matrix) {
+  function addOnetoSurrounding(rowIndex, colIndex, field, originalField){
+    
+    for(let i = rowIndex-1; i <= rowIndex+1; i++){
+      for(let j= colIndex-1; j<= colIndex+1; j++){
+        if(i<0 ||i >= field.length){
+          continue;
+        }
+        if( j<0|| j>= field[i].length){
+          continue;
+        }  
+        if(!originalField[i][j]){
+          field[i][j]++;
+        }else{
+          field[rowIndex][colIndex]=1
+        }
+      }
+    }
+    
+    return field;
+   
+  }
+  
+  matrix = matrix.map((row)=>row.map((el)=>0+el))
+  let temp = JSON.stringify(matrix);
+  let m2 = JSON.parse(temp).map((row)=>row.map((el)=>0));
+
+  for(let i = 0; i < matrix.length; i++){
+    for(let j = 0; j < matrix[0].length; j++){
+      if(matrix[i][j]==1){            
+        m2 = addOnetoSurrounding(i,j,m2, matrix);
+
+      }
+      
+    }    
+  }
+  for(let el of m2){console.log(el)}
+  return m2;
+
 }
 
+
+
+
+minesweeper(
+  [
+    [true, false, false],
+    [false, true, false],
+    [false, false, false]
+  ]
+);
 module.exports = minesweeper;
