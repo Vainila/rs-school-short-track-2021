@@ -19,11 +19,11 @@ class Queue extends ListNode {
   get size() {
     let counter = 0;
     if (this.value) { counter = 1; }
-    let obj = new Object(this.next);
+    let obj = { ...this.next };
     counter++;
     let objNext = obj.next;
     while (objNext != null) {
-      obj = new Object(objNext);
+      obj = { ...objNext };
       objNext = obj.next;
       counter++;
     }
@@ -37,10 +37,10 @@ class Queue extends ListNode {
     } else if (this.next == null) {
       this.next = new ListNode(element);
     } else {
-      let obj = new Object(this.next);
+      let obj = { ...this.next };
       let objNext = obj.next;
       while (objNext != null) {
-        obj = new Object(objNext);
+        obj = { ...objNext };
         objNext = obj.next;
       }
       obj.next = new ListNode2(element);
@@ -49,7 +49,7 @@ class Queue extends ListNode {
 
   dequeue() {
     const tempValue = this.value;
-    const tempObj = new Object(this.next);
+    const tempObj = { ...this.next };
     this.value = tempObj.value;
     this.next = tempObj.next;
     return tempValue;

@@ -20,8 +20,8 @@ module.exports = {
     'no-plusplus': 'off',
     'func-names': 'off',
     'space-before-function-paren': 'off',
-    'linebreak-style': ["error", "windows"],
-    'no-new-object': 'off'
+    'linebreak-style': ["error", "windows"]
+    
   }
   
 };
